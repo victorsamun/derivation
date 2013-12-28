@@ -8,10 +8,11 @@ namespace symbolic {
 class function {
 	pfunction_impl f;
 
-	function ();
 	function (const pfunction_impl & f);
 
 public:
+	function ();
+
 	static function var ();
 	static function num (double v);
 

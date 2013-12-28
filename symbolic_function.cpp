@@ -2,6 +2,8 @@
 
 using namespace symbolic;
 
+function::function () : f (std::make_shared <value> (0.0)) { }
+
 function::function (const pfunction_impl & f) : f (f) { }
 
 function function::var ()
