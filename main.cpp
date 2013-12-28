@@ -1,21 +1,26 @@
 #include "symbolic_function.h"
-#include "driver.h"
+#include "parse_error.h"
 #include <iostream>
 #include <string>
 
-using symbolic::driver;
+using symbolic::parse_error;
 using symbolic::function;
 
 int main () {
 	std::string s;
-
 	std::getline (std::cin, s);
 
-	driver d;
-	d.parse (s);
+	function f;
+	try {
+		f = function::parse (s);
+	}
+	catch (const parse_error & e) {
+		std::cerr << "Parse error: " << e.what () << std::endl;
+		return 1;
+	}
 
-	std::cout << s << " -> " << d.get () << std::endl;
-	std::cout << "(" << s << ")' = " << d.get ().derivative () << std::endl;
+	std::cout << s << " -> " << f << std::endl;
+	std::cout << "(" << s << ")' = " << f.derivative () << std::endl;
 
 	return 0;
 }

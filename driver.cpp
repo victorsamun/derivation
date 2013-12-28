@@ -3,28 +3,31 @@
 
 using namespace symbolic;
 
-void driver::parse (const std::string & str) {
+driver::driver ()
+	: m_parser (nullptr), m_scanner (nullptr) { }
+
+void driver::parse (const std::string & str) throw (parse_error) {
 	std::istringstream is (str);
 
-	delete s;
-	s = new scanner (& is);
+	delete m_scanner;
+	m_scanner = new scanner (& is);
 
-	delete p;
-	p = new parser (* s, * this);
+	delete m_parser;
+	m_parser = new parser (* m_scanner, * this);
 
-	p->parse ();
+	m_parser->parse ();
 }
 
 void driver::set (const function & f) {
-	v = f;
+	m_value = f;
 }
 
 function driver::get () const {
-	return v;
+	return m_value;
 }
 
 driver::~driver () {
-	delete s;
-	delete p;
+	delete m_scanner;
+	delete m_parser;
 }
 

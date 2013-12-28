@@ -1,10 +1,18 @@
 #include "symbolic_function.h"
+#include "driver.h"
 
 using namespace symbolic;
 
 function::function () : f (std::make_shared <value> (0.0)) { }
 
 function::function (const pfunction_impl & f) : f (f) { }
+
+function function::parse (const std::string & s) {
+	driver d;
+	d.parse (s);
+
+	return d.get ();
+}
 
 function function::var ()
 	{ return function (std::make_shared <variable> ()); }

@@ -2,6 +2,7 @@
 #define _SYMBOLIC_FUNCTION_H_
 
 #include "function_impl.h"
+#include <string>
 
 namespace symbolic {
 
@@ -12,6 +13,8 @@ class function {
 
 public:
 	function ();
+
+	static function parse (const std::string & s);
 
 	static function var ();
 	static function num (double v);

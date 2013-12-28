@@ -103,7 +103,7 @@ expr
 %%
 
 void symbolic::parser::error (const symbolic::location & l, const std::string & msg) {
-	std::cerr << "Error: " << msg << std::endl;
+	throw symbolic::parse_error (msg);
 }
 
 #include "scanner.h"
