@@ -58,26 +58,26 @@ public:
 
 typedef double (* func_ptr) (double x);
 
-template <typename Function>
-struct FunctionTraits {
+template <typename T>
+struct function_traits {
 	static const char * const name;
 	static func_ptr func;
 };
 
-template <typename FunctionTraits>
+template <typename traits>
 class simple_function : public unary_function {
 public:
 	simple_function (const pfunction_impl & arg)
 		: unary_function (arg) { }
 
 	virtual double val (double x) const {
-		return FunctionTraits::func (x);
+		return traits::func (x);
 	}
 
 	virtual pfunction_impl derivative () const;
 
 	virtual void print (std::ostream & os) const {
-		os << FunctionTraits::name << '(';
+		os << traits::name << '(';
 		arg->print (os);
 		os << ')';
 	}
@@ -96,17 +96,32 @@ struct arcsin_op { };
 struct arccos_op { };
 struct arctg_op { };
 
-typedef simple_function <FunctionTraits <ln_op>> ln_f;
-typedef simple_function <FunctionTraits <abs_op>> abs_f;
+struct sh_op { };
+struct ch_op { };
+struct th_op { };
 
-typedef simple_function <FunctionTraits <sin_op>> sin_f;
-typedef simple_function <FunctionTraits <cos_op>> cos_f;
-typedef simple_function <FunctionTraits <tg_op>> tg_f;
+struct arsh_op { };
+struct arch_op { };
+struct arth_op { };
 
-typedef simple_function <FunctionTraits <arcsin_op>> arcsin_f;
-typedef simple_function <FunctionTraits <arccos_op>> arccos_f;
-typedef simple_function <FunctionTraits <arctg_op>> arctg_f;
+typedef simple_function <function_traits <ln_op>> ln_f;
+typedef simple_function <function_traits <abs_op>> abs_f;
 
+typedef simple_function <function_traits <sin_op>> sin_f;
+typedef simple_function <function_traits <cos_op>> cos_f;
+typedef simple_function <function_traits <tg_op>> tg_f;
+
+typedef simple_function <function_traits <arcsin_op>> arcsin_f;
+typedef simple_function <function_traits <arccos_op>> arccos_f;
+typedef simple_function <function_traits <arctg_op>> arctg_f;
+
+typedef simple_function <function_traits <sh_op>> sh_f;
+typedef simple_function <function_traits <ch_op>> ch_f;
+typedef simple_function <function_traits <th_op>> th_f;
+
+typedef simple_function <function_traits <arsh_op>> arsh_f;
+typedef simple_function <function_traits <arch_op>> arch_f;
+typedef simple_function <function_traits <arth_op>> arth_f;
 }
 
 #endif

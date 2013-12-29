@@ -54,6 +54,24 @@ function function::arccos (const function & f)
 function function::arctg (const function & f)
 	{ return function (std::make_shared <arctg_f> (f.f)); }
 
+function function::sh (const function & f)
+	{ return function (std::make_shared <sh_f> (f.f)); }
+
+function function::ch (const function & f)
+	{ return function (std::make_shared <ch_f> (f.f)); }
+
+function function::th (const function & f)
+	{ return function (std::make_shared <th_f> (f.f)); }
+
+function function::arsh (const function & f)
+	{ return function (std::make_shared <arsh_f> (f.f)); }
+
+function function::arch (const function & f)
+	{ return function (std::make_shared <arch_f> (f.f)); }
+
+function function::arth (const function & f)
+	{ return function (std::make_shared <arth_f> (f.f)); }
+
 function function::exp (double e, const function & f)
 	{ return function (std::make_shared <exp_v> (e, f.f)); }
 

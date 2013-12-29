@@ -44,6 +44,14 @@ nl	[\r\n]
 "acos"	return token::ACOS;
 "atg"	return token::ATAN;
 
+"sh"	return token::SH;
+"ch"	return token::CH;
+"th"	return token::TH;
+
+"arsh"	return token::ARSH;
+"arch"	return token::ARCH;
+"arth"	return token::ARTH;
+
 "x"	return token::X;
 
 [+-]?(?:(?:{num}+|{num}*\.{num}+)(?:[eE][+-]?{num}+)?|0[xX](?:{hnum}+|{hnum}*\.{hnum}+)(?:[pP]{num}+)?|(?i:INFINITY|INF)|NAN(?:\({nchar}+\))?) {

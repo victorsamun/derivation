@@ -38,6 +38,14 @@ public:
 	static function arccos (const function & f);
 	static function arctg (const function & f);
 
+	static function sh (const function & f);
+	static function ch (const function & f);
+	static function th (const function & f);
+
+	static function arsh (const function & f);
+	static function arch (const function & f);
+	static function arth (const function & f);
+
 	function & operator += (const function & rhs);
 	function & operator -= (const function & rhs);
 	function & operator *= (const function & rhs);

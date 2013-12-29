@@ -41,6 +41,7 @@
 %token PLUS MINUS MULT DIV POW
 %token ABS LN EXP
 %token SIN COS TAN ASIN ACOS ATAN
+%token SH CH TH ARSH ARCH ARTH
 %token X
 %token <dval> NUMBER
 
@@ -61,37 +62,49 @@ expression
 
 expr
 	:	expr PLUS expr
-		{ $$ = new function (*$1 + *$3); }
+		{ $$ = new function ((* $1) + (* $3)); }
 	|	expr MINUS expr
-		{ $$ = new function (*$1 - *$3); }
+		{ $$ = new function ((* $1) - (* $3)); }
 	|	expr MULT expr
-		{ $$ = new function (*$1 * *$3); }
+		{ $$ = new function ((* $1) * (* $3)); }
 	|	expr DIV expr
-		{ $$ = new function (*$1 / *$3); }
+		{ $$ = new function ((* $1) / (* $3)); }
 	| 	expr POW expr
-		{ $$ = new function ($1->pow (*$3)); }
+		{ $$ = new function ($1->pow (* $3)); }
 	|	LP expr RP
-		{ $$ = new function (*$2); }
+		{ $$ = new function (* $2); }
 	|	HP expr HP
-		{ $$ = new function (function::abs (*$2)); }
+		{ $$ = new function (function::abs (* $2)); }
 	|	ABS LP expr RP
-		{ $$ = new function (function::abs (*$3)); }
+		{ $$ = new function (function::abs (* $3)); }
 	|	LN LP expr RP
-		{ $$ = new function (function::ln (*$3)); }
+		{ $$ = new function (function::ln (* $3)); }
 	|	EXP LP expr RP
-		{ $$ = new function (function::exp (2.718281828459045, *$3)); }
+		{ $$ = new function (function::exp (2.718281828459045, * $3)); }
 	|	SIN LP expr RP
-		{ $$ = new function (function::sin (*$3)); }
+		{ $$ = new function (function::sin (* $3)); }
 	|	COS LP expr RP
-		{ $$ = new function (function::cos (*$3)); }
+		{ $$ = new function (function::cos (* $3)); }
 	|	TAN LP expr RP
-		{ $$ = new function (function::tg (*$3)); }
+		{ $$ = new function (function::tg (* $3)); }
 	|	ASIN LP expr RP
-		{ $$ = new function (function::arcsin (*$3)); }
+		{ $$ = new function (function::arcsin (* $3)); }
 	|	ACOS LP expr RP
-		{ $$ = new function (function::arccos (*$3)); }
+		{ $$ = new function (function::arccos (* $3)); }
 	|	ATAN LP expr RP
-		{ $$ = new function (function::arctg (*$3)); }
+		{ $$ = new function (function::arctg (* $3)); }
+	|	SH LP expr RP
+		{ $$ = new function (function::sh (* $3)); }
+	|	CH LP expr RP
+		{ $$ = new function (function::ch (* $3)); }
+	|	TH LP expr RP
+		{ $$ = new function (function::th (* $3)); }
+	|	ARSH LP expr RP
+		{ $$ = new function (function::arsh (* $3)); }
+	|	ARCH LP expr RP
+		{ $$ = new function (function::arch (* $3)); }
+	|	ARTH LP expr RP
+		{ $$ = new function (function::arth (* $3)); }
 	|	NUMBER
 		{ $$ = new function (function::num ($1)); }
 	|	X
