@@ -1,5 +1,6 @@
 %{
 	#include <cstdlib>
+	#include "parse_error.h"
 	#include "scanner.h"
 
 	typedef symbolic::parser::token token;
@@ -59,9 +60,10 @@ nl	[\r\n]
 	return token::NUMBER;
 }
 
-{nl}	return token::END;
-
-{ws}+	/* ignore */
+({nl}|{ws})+	/* ignore */
+.	{
+	throw symbolic::parse_error ("invalid character");
+}
 
 %%
 
