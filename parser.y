@@ -36,8 +36,6 @@
 	double dval;
 }
 
-%start expression
-
 %token END 0 "end of string"
 %token LP RP HP
 %token PLUS MINUS MULT DIV POW

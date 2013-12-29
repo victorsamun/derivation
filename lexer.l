@@ -9,7 +9,6 @@
 %}
 
 %option debug
-%option nodefault
 %option yyclass="scanner"
 %option noyywrap
 %option c++

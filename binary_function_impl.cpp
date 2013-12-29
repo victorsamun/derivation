@@ -144,9 +144,11 @@ pfunction_impl mult::derivative () const {
 }
 
 void mult::print (std::ostream & os) const {
+	os << '(';
 	lhs->print (os);
-	os << '*';
+	os << ")*(";
 	rhs->print (os);
+	os << ')';
 }
 
 mult::~mult () { }

@@ -10,20 +10,12 @@
 namespace symbolic {
 
 class driver {
-	parser * m_parser;
-	scanner * m_scanner;
-
-	function m_value;
+	function value;
 
 public:
-	driver ();
-
-	void parse (const std::string & str) throw (parse_error);
+	function parse (const std::string & str) throw (parse_error);
 
 	void set (const function & f);
-	function get () const;
-
-	virtual ~driver ();
 };
 
 }

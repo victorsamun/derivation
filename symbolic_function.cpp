@@ -9,9 +9,7 @@ function::function (const pfunction_impl & f) : f (f) { }
 
 function function::parse (const std::string & s) {
 	driver d;
-	d.parse (s);
-
-	return d.get ();
+	return d.parse (s);
 }
 
 function function::var ()
