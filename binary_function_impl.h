@@ -14,6 +14,8 @@ protected:
 
 public:
 	virtual bool is_const () const;
+	const pfunction_impl & left () const;
+	const pfunction_impl & right () const;
 
 	virtual ~binary_function ();
 };

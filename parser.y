@@ -71,6 +71,8 @@ expr
 		{ $$ = new function ((* $1) / (* $3)); }
 	| 	expr POW expr
 		{ $$ = new function ($1->pow (* $3)); }
+	|	MINUS expr
+		{ $$ = new function (- * $2); }
 	|	LP expr RP
 		{ $$ = new function (* $2); }
 	|	HP expr HP

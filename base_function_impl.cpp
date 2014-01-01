@@ -1,12 +1,5 @@
 #include "base_function_impl.h"
 
-class parenth {
-	std::ostream & os;
-public:
-	parenth (std::ostream & os) : os (os) { os << '('; }
-	~parenth () { os << ')'; }
-};
-
 using namespace symbolic;
 
 /* Base class */
@@ -52,10 +45,8 @@ pfunction_impl value::derivative () const {
 }
 
 void value::print (std::ostream & os) const {
-	if (v < 0.0) {
-		parenth p (os);
-		os << v;
-	}
+	if (v < 0.0)
+		os << '(' << v << ')';
 	else
 		os << v;
 }

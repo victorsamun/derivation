@@ -13,6 +13,7 @@ protected:
 
 public:
 	virtual bool is_const () const;
+	const pfunction_impl & operand () const;
 
 	virtual ~unary_function ();
 };

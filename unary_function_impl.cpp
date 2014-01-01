@@ -13,6 +13,10 @@ bool unary_function::is_const () const {
 	return arg->is_const ();
 }
 
+const pfunction_impl & unary_function::operand () const {
+	return arg;
+}
+
 unary_function::~unary_function () { }
 
 
@@ -83,7 +87,7 @@ double exp_v::val (double x) const {
 
 pfunction_impl exp_v::derivative () const {
 	return std::make_shared <mult> (
-		std::make_shared <value> (std::log (e)),
+		std::make_shared <ln_f> (std::make_shared <value> (e)),
 		std::make_shared <mult> (
 			std::make_shared <exp_v> (e, arg),
 			arg->derivative ()

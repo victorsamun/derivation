@@ -4,6 +4,17 @@
 
 using namespace symbolic;
 
+void _print (const pfunction_impl & f, std::ostream & os) {
+	if (f->is_const ()) {
+		f->print (os);
+		return;
+	}
+
+	os << '(';
+	f->print (os);
+	os << ')';
+}
+
 /* Binary function */
 
 binary_function::binary_function (const pfunction_impl & lhs, const pfunction_impl & rhs)
@@ -11,6 +22,14 @@ binary_function::binary_function (const pfunction_impl & lhs, const pfunction_im
 
 bool binary_function::is_const () const {
 	return lhs->is_const () && rhs->is_const ();
+}
+
+const pfunction_impl & binary_function::left () const {
+	return lhs;
+}
+
+const pfunction_impl & binary_function::right () const {
+	return rhs;
 }
 
 binary_function::~binary_function () { }
@@ -42,11 +61,9 @@ pfunction_impl exp_f::derivative () const {
 }
 
 void exp_f::print (std::ostream & os) const {
-	os << '(';
-	lhs->print (os);
-	os << ")^(";
-	rhs->print (os);
-	os << ')';
+	_print (lhs, os);
+	os << '^';
+	_print (rhs, os);
 }
 
 exp_f::~exp_f () { }
@@ -75,11 +92,9 @@ pfunction_impl plus::derivative () const {
 }
 
 void plus::print (std::ostream & os) const {
-	os << '(';
-	lhs->print (os);
-	os << ")+(";
-	rhs->print (os);
-	os << ')';
+	_print (lhs, os);
+	os << '+';
+	_print (rhs, os);
 }
 
 plus::~plus () { }
@@ -108,11 +123,9 @@ pfunction_impl minus::derivative () const {
 }
 
 void minus::print (std::ostream & os) const {
-	os << '(';
-	lhs->print (os);
-	os << ")-(";
-	rhs->print (os);
-	os << ')';
+	_print (lhs, os);
+	os << '-';
+	_print (rhs, os);
 }
 
 minus::~minus () { }
@@ -144,11 +157,9 @@ pfunction_impl mult::derivative () const {
 }
 
 void mult::print (std::ostream & os) const {
-	os << '(';
-	lhs->print (os);
-	os << ")*(";
-	rhs->print (os);
-	os << ')';
+	_print (lhs, os);
+	os << '*';
+	_print (rhs, os);
 }
 
 mult::~mult () { }
@@ -187,11 +198,9 @@ pfunction_impl div::derivative () const {
 }
 
 void div::print (std::ostream & os) const {
-	os << '(';
-	lhs->print (os);
-	os << ")/(";
-	rhs->print (os);
-	os << ')';
+	_print (lhs, os);
+	os << '/';
+	_print (rhs, os);
 }
 
 div::~div () { }

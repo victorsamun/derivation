@@ -55,7 +55,7 @@ nl	[\r\n]
 
 "x"	return token::X;
 
-[+-]?(?:(?:{num}+|{num}*\.{num}+)(?:[eE][+-]?{num}+)?|0[xX](?:{hnum}+|{hnum}*\.{hnum}+)(?:[pP]{num}+)?|(?i:INFINITY|INF)|NAN(?:\({nchar}+\))?) {
+(?:(?:{num}+|{num}*\.{num}+)(?:[eE][+-]?{num}+)?|0[xX](?:{hnum}+|{hnum}*\.{hnum}+)(?:[pP]{num}+)?|(?i:INFINITY|INF)|NAN(?:\({nchar}+\))?) {
 	yylval->dval = std::atof (yytext);
 	return token::NUMBER;
 }
