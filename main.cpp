@@ -12,15 +12,17 @@ int main () {
 
 	function f;
 	try {
-		f = function::parse (s);
+		f = function::parse (s).simplify ();
 	}
 	catch (const parse_error & e) {
 		std::cerr << "Parse error: " << e.what () << std::endl;
 		return 1;
 	}
 
+	function ans = f.derivative ().simplify ();
+
 	std::cout << s << " -> " << f << std::endl;
-	std::cout << "(" << s << ")' = " << f.derivative () << std::endl;
+	std::cout << "(" << s << ")' = " << ans << std::endl;
 
 	return 0;
 }

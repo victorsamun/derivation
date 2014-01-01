@@ -72,7 +72,7 @@ public:
 		: unary_function (arg) { }
 
 	virtual double val (double x) const {
-		return traits::func (x);
+		return traits::func (arg->val (x));
 	}
 
 	virtual pfunction_impl derivative () const;

@@ -1,4 +1,5 @@
 #include "symbolic_function.h"
+#include "simplifyer.h"
 #include "driver.h"
 
 using namespace symbolic;
@@ -10,6 +11,10 @@ function::function (const pfunction_impl & f) : f (f) { }
 function function::parse (const std::string & s) {
 	driver d;
 	return d.parse (s);
+}
+
+function function::simplify () const {
+	return function (constant_folder::simplify (f));
 }
 
 function function::var ()

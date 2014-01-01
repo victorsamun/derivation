@@ -20,6 +20,7 @@ public:
 	static function num (double v);
 
 	function derivative () const;
+	function simplify () const;
 
 	double operator () (double x) const;
 
