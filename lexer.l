@@ -1,5 +1,6 @@
 %{
 	#include <cstdlib>
+	#include <cmath>
 	#include "parse_error.h"
 	#include "scanner.h"
 
@@ -54,6 +55,11 @@ nl	[\r\n]
 "arth"	return token::ARTH;
 
 "x"	return token::X;
+
+"Pi"	{
+	yylval->dval = M_PI;
+	return token::NUMBER;
+}
 
 (?:(?:{num}+|{num}*\.{num}+)(?:[eE][+-]?{num}+)?|0[xX](?:{hnum}+|{hnum}*\.{hnum}+)(?:[pP][+-]?{num}+)?|(?i:INFINITY|INF)|NAN(?:\({nchar}+\))?) {
 	yylval->dval = std::atof (yytext);

@@ -96,7 +96,11 @@ pfunction_impl exp_v::derivative () const {
 }
 
 void exp_v::print (std::ostream & os) const {
-	os << e << "^(";
+	if (e < 0.0)
+		os << '(' << e << ')';
+	else
+		os << e;
+	os << "^(";
 	arg->print (os);
 	os << ')';
 }
