@@ -147,7 +147,10 @@ pfunction_impl ln_f::derivative () const {
 	if (arg->is_const ())
 		return std::make_shared <value> (0.0);
 
-	return std::make_shared <div> (arg->derivative (), arg);
+	return std::make_shared <mult> (
+		std::make_shared <exp_v> (1.0, std::make_shared <ln_f> (arg)),
+		std::make_shared <div> (arg->derivative (), arg)
+	);
 }
 
 template <>
